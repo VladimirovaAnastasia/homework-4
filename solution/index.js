@@ -3,8 +3,7 @@ module.exports = function (Homework) {
     function promisify(fn) {
         return function (...args) {
             return new Promise((resolve) => {
-                args.push((result) => resolve(result));
-                fn.call(this, ...args);
+                fn(...args, (data) => resolve(data))
             });
         };
     }
